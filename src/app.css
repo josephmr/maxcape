@@ -22,6 +22,12 @@
   --color-osrs-head-div:       #2e2818;
   --color-osrs-summary-border: #382e14;
   --color-osrs-summary-text:   #a09060;
+
+  /* Achievement diary tier colors — subdued to match overall aesthetic */
+  --color-osrs-tier-elite:  #7a6530;
+  --color-osrs-tier-hard:   #7a3828;
+  --color-osrs-tier-medium: #345f7a;
+  --color-osrs-tier-easy:   #35663a;
 }
 
 @layer utilities {

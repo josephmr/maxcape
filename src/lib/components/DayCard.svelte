@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { DayGroup } from '$lib/events';
 	import SkillChip from './SkillChip.svelte';
+	import BossChip from './BossChip.svelte';
 	import ItemChip from './ItemChip.svelte';
+	import DiaryChip from './DiaryChip.svelte';
 
 	let { day }: { day: DayGroup } = $props();
 </script>
@@ -10,17 +12,29 @@
 	<!-- Header -->
 	<div class="flex items-center justify-between px-4 py-[10px] bg-gradient-to-r from-osrs-card-head to-osrs-card border-b border-osrs-card-border">
 		<span class="font-pixel text-[8px] text-osrs-gold">{day.dateLabel}</span>
-		<div class="flex gap-3">
+		<div class="flex gap-3 flex-wrap justify-end">
 			{#if day.skills.length > 0}
 				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
 					<span class="text-osrs-gold">{day.skills.length}</span>
 					{day.skills.length === 1 ? 'level' : 'levels'}
 				</span>
 			{/if}
+			{#if day.bosses.length > 0}
+				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
+					<span class="text-osrs-gold">{day.bosses.length}</span>
+					{day.bosses.length === 1 ? 'boss' : 'bosses'}
+				</span>
+			{/if}
 			{#if day.items.length > 0}
 				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
 					<span class="text-osrs-gold">{day.items.length}</span>
 					{day.items.length === 1 ? 'item' : 'items'}
+				</span>
+			{/if}
+			{#if day.diaries.length > 0}
+				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
+					<span class="text-osrs-gold">{day.diaries.length}</span>
+					{day.diaries.length === 1 ? 'diary' : 'diaries'}
 				</span>
 			{/if}
 		</div>
@@ -41,6 +55,19 @@
 			</div>
 		{/if}
 
+		{#if day.bosses.length > 0}
+			<div>
+				<div class="font-pixel text-[6px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+					Boss Kills
+				</div>
+				<div class="flex flex-wrap gap-[6px]">
+					{#each day.bosses as entry (entry.bossName)}
+						<BossChip bossName={entry.bossName} killsToday={entry.killsToday} totalKc={entry.totalKc} />
+					{/each}
+				</div>
+			</div>
+		{/if}
+
 		{#if day.items.length > 0}
 			<div>
 				<div class="font-pixel text-[6px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
@@ -49,6 +76,19 @@
 				<div class="flex flex-wrap gap-[6px]">
 					{#each day.items as entry (entry.itemName)}
 						<ItemChip itemName={entry.itemName} />
+					{/each}
+				</div>
+			</div>
+		{/if}
+
+		{#if day.diaries.length > 0}
+			<div>
+				<div class="font-pixel text-[6px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+					Achievement Diaries
+				</div>
+				<div class="flex flex-wrap gap-[6px]">
+					{#each day.diaries as entry (`${entry.area}:${entry.difficulty}`)}
+						<DiaryChip area={entry.area} difficulty={entry.difficulty} />
 					{/each}
 				</div>
 			</div>
