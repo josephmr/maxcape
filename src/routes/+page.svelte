@@ -10,22 +10,26 @@
 	}
 </script>
 
-<main class="max-w-xl mx-auto mt-24 px-4 text-center">
-	<h1 class="text-4xl font-bold mb-2">MaxCape</h1>
-	<p class="text-gray-500 mb-8">Account milestone tracker for OSRS</p>
+<div class="osrs-bg min-h-screen flex flex-col items-center justify-center px-4 font-game text-osrs-body">
+	<div class="w-full max-w-sm text-center">
+		<h1 class="font-pixel text-[22px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px] mb-2">
+			MaxCape
+		</h1>
+		<p class="font-game text-[22px] text-osrs-gold-dim tracking-[3px] mb-8">OSRS milestone tracker</p>
 
-	<form onsubmit={search} class="flex gap-2">
-		<input
-			bind:value={playerName}
-			type="text"
-			placeholder="Enter player name"
-			class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-		/>
-		<button
-			type="submit"
-			class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded"
-		>
-			Search
-		</button>
-	</form>
-</main>
+		<form onsubmit={search} class="flex">
+			<input
+				bind:value={playerName}
+				type="text"
+				placeholder="Enter player name"
+				class="flex-1 bg-osrs-chip-bg border border-osrs-chip-border text-osrs-body font-game text-[20px] px-3 py-2 focus:outline-none focus:border-osrs-accent placeholder:text-osrs-gold-dim"
+			/>
+			<button
+				type="submit"
+				class="bg-osrs-card-head border border-osrs-accent text-osrs-gold font-pixel text-[8px] px-4 py-2 hover:bg-osrs-accent hover:text-osrs-bg transition-colors duration-[120ms]"
+			>
+				Search
+			</button>
+		</form>
+	</div>
+</div>

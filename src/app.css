@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+@theme {
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-game:  'VT323', monospace;
+
+  --color-osrs-bg:             #06050a;
+  --color-osrs-card:           #110f09;
+  --color-osrs-card-head:      #201c0e;
+  --color-osrs-card-border:    #28220e;
+  --color-osrs-accent:         #c8a04b;
+  --color-osrs-chip-bg:        #120f08;
+  --color-osrs-chip-icon:      #181408;
+  --color-osrs-chip-border:    #302810;
+  --color-osrs-gold:           #d8b060;
+  --color-osrs-gold-dim:       #907848;
+  --color-osrs-gold-bright:    #e8d060;
+  --color-osrs-chip-skill:     #d0bc88;
+  --color-osrs-chip-item:      #d8c888;
+  --color-osrs-body:           #ecdcb0;
+  --color-osrs-section-div:    #1e1a0c;
+  --color-osrs-head-div:       #2e2818;
+  --color-osrs-summary-border: #382e14;
+  --color-osrs-summary-text:   #a09060;
+}
+
+@layer utilities {
+  .osrs-bg {
+    background-color: #06050a;
+    background-image:
+      repeating-linear-gradient(0deg,  transparent, transparent 31px, rgba(200,160,75,0.04) 31px, rgba(200,160,75,0.04) 32px),
+      repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(200,160,75,0.04) 31px, rgba(200,160,75,0.04) 32px);
+  }
+
+  .card-accent-border {
+    border-left: 3px solid var(--color-osrs-accent);
+  }
+
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+}
