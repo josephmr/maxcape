@@ -4,5 +4,5 @@ export default defineConfig({
 	schema: './src/lib/server/schema.ts',
 	out: './drizzle',
 	dialect: 'sqlite',
-	dbCredentials: { url: 'maxcape.db' }
+	dbCredentials: { url: process.env.DATABASE_URL ?? 'maxcape.db' }
 });
