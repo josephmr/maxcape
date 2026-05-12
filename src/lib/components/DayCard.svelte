@@ -35,7 +35,7 @@
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
 					{#each day.skills as entry (entry.skill)}
-						<SkillChip skill={entry.skill} level={entry.level} />
+						<SkillChip skill={entry.skill} level={entry.level} levelsGained={entry.levelsGained} />
 					{/each}
 				</div>
 			</div>
