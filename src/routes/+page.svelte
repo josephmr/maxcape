@@ -6,7 +6,7 @@
 	function search(e: Event) {
 		e.preventDefault();
 		const name = playerName.trim();
-		if (name) goto('/' + name);
+		if (name) goto('/players/' + name);
 	}
 </script>
 
