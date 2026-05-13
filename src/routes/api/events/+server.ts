@@ -4,6 +4,8 @@ import { db } from '$lib/server/db';
 import { events, players } from '$lib/server/schema';
 import { sql } from 'drizzle-orm';
 
+const NOW = sql`(datetime('now'))`;
+
 export const POST: RequestHandler = async ({ request }) => {
 	let body: unknown;
 	try {
@@ -24,25 +26,24 @@ export const POST: RequestHandler = async ({ request }) => {
 	const hashStr = String(accountHash);
 	const nameStr = String(playerName);
 
-	// ACCOUNT_IDENTIFY: update the players mapping only, no event row
+	// ACCOUNT_IDENTIFY updates the player mapping only — no event row is written
 	if (String(type) === 'ACCOUNT_IDENTIFY') {
 		await db
 			.insert(players)
-			.values({ accountHash: hashStr, playerName: nameStr, updatedAt: sql`(datetime('now'))` })
+			.values({ accountHash: hashStr, playerName: nameStr, updatedAt: NOW })
 			.onConflictDoUpdate({
 				target: players.accountHash,
-				set: { playerName: nameStr, updatedAt: sql`(datetime('now'))` }
+				set: { playerName: nameStr, updatedAt: NOW }
 			});
 		return json({ ok: true }, { status: 200 });
 	}
 
-	// All other events: insert event row only — players table is not touched
 	await db.insert(events).values({
 		accountHash: hashStr,
 		playerName:  nameStr,
 		eventType:   String(type),
 		timestamp:   String(timestamp),
-		data:        typeof data === 'string' ? data : JSON.stringify(data)
+		data:        JSON.stringify(data)
 	});
 
 	return json({ ok: true }, { status: 201 });
