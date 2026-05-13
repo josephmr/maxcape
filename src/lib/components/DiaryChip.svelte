@@ -8,7 +8,7 @@
 		Easy:   'text-osrs-tier-easy'
 	};
 
-	const tierClass = tierColor[difficulty] ?? 'text-osrs-gold-dim';
+	const tierClass = $derived(tierColor[difficulty] ?? 'text-osrs-gold-dim');
 </script>
 
 <div class="flex items-stretch border border-osrs-chip-border overflow-hidden cursor-default">
