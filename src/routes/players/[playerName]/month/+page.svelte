@@ -22,25 +22,25 @@
 		<div class="flex mb-6 font-pixel text-[7px] border border-osrs-card-border">
 			<a
 				href="/players/{data.playerName}"
-				class="px-4 py-2 bg-osrs-accent text-black"
+				class="px-4 py-2 text-osrs-gold-dim hover:text-osrs-gold"
 			>
 				Day
 			</a>
 			<a
 				href="/players/{data.playerName}/month"
-				class="px-4 py-2 border-l border-osrs-card-border text-osrs-gold-dim hover:text-osrs-gold"
+				class="px-4 py-2 border-l border-osrs-card-border bg-osrs-accent text-black"
 			>
 				Month
 			</a>
 		</div>
 
-		{#if data.days.length === 0}
+		{#if data.months.length === 0}
 			<p class="font-game text-[20px] text-osrs-gold-dim text-center mt-12">
 				No events recorded yet. Make sure the plugin is enabled and send events is toggled on.
 			</p>
 		{:else}
-			{#each data.days as day (day.dateKey)}
-				<EventGroupCard {day} />
+			{#each data.months as month (month.dateKey)}
+				<EventGroupCard day={month} />
 			{/each}
 		{/if}
 	</div>

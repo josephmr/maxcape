@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { DayGroup } from '$lib/events';
+	import type { EventGroup } from '$lib/events';
 	import SkillChip from './SkillChip.svelte';
 	import BossChip from './BossChip.svelte';
 	import ItemChip from './ItemChip.svelte';
 	import DiaryChip from './DiaryChip.svelte';
 
-	let { day }: { day: DayGroup } = $props();
+	let { day }: { day: EventGroup } = $props();
 </script>
 
 <div class="mb-5 border border-osrs-card-border card-accent-border bg-gradient-to-br from-osrs-card to-[#0d0b07] shadow-[0_2px_20px_rgba(0,0,0,0.6)]">
