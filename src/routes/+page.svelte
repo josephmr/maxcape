@@ -10,7 +10,7 @@
 	}
 </script>
 
-<div class="osrs-bg min-h-screen flex flex-col items-center justify-center px-4 font-game text-osrs-body">
+<div class="osrs-bg min-h-dvh flex flex-col items-center justify-center px-4 font-game text-osrs-body">
 	<div class="w-full max-w-sm text-center">
 		<h1 class="font-pixel text-[22px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px] mb-2">
 			MaxCape

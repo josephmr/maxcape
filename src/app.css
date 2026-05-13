@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+html,
+body {
+  background-color: #06050a;
+  min-height: 100dvh;
+}
+
 @theme {
   --font-pixel: 'Press Start 2P', cursive;
   --font-game:  'VT323', monospace;

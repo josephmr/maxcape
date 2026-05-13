@@ -9,7 +9,7 @@
 	} = $props();
 </script>
 
-<div class="osrs-bg min-h-screen text-osrs-body font-game py-8 px-4 flex flex-col items-center">
+<div class="osrs-bg min-h-dvh text-osrs-body font-game py-8 px-4 flex flex-col items-center">
 	<div class="w-full max-w-[720px]">
 		<a href="/" class="font-game text-[18px] text-osrs-gold-dim hover:text-osrs-gold mb-6 inline-block">
 			&larr; Back
