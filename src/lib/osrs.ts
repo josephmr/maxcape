@@ -7,8 +7,14 @@ export function itemIconUrl(itemName: string): string {
 	return `https://oldschool.runescape.wiki/images/${sentenceCase.replace(/ /g, '_')}.png`;
 }
 
-// Boss names from the game are already in Title Case (e.g. "Abyssal Sire"), which
-// matches the wiki's naming convention — just replace spaces with underscores.
+// Boss icons sourced from Wise Old Man (covers all hiscore bosses including Wintertodt).
+// Transform: lowercase, strip apostrophes, collapse colons/hyphens/spaces to underscores.
 export function bossImageUrl(bossName: string): string {
-	return `https://oldschool.runescape.wiki/images/${bossName.replace(/ /g, '_')}.png`;
+	const filename = bossName
+		.toLowerCase()
+		.replace(/'/g, '')
+		.replace(/[:\-\s]+/g, '_')
+		.replace(/_+/g, '_')
+		.replace(/^_|_$/g, '');
+	return `/boss-icons/${filename}.png`;
 }
