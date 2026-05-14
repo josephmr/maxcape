@@ -19,11 +19,10 @@
 			<h1 class="font-pixel text-[20px] lg:text-[25px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px]">
 				{playerName}
 			</h1>
-			<p class="font-game text-[20px] lg:text-[25px] text-osrs-gold-dim mt-[6px] tracking-[4px]">Account History</p>
-			<span class="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-[120px] h-px bg-osrs-accent"></span>
+<span class="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-[120px] h-px bg-osrs-accent"></span>
 		</header>
 
-		<div class="flex mb-6 font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border">
+		<div class="flex mb-6 font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border w-fit ml-auto">
 			<a
 				href="/players/{playerName}"
 				class="px-4 py-2 lg:px-5 lg:py-3 {activeTab === 'day' ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
