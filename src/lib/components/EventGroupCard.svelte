@@ -10,29 +10,29 @@
 
 <div class="mb-5 border border-osrs-card-border card-accent-border bg-gradient-to-br from-osrs-card to-[#0d0b07] shadow-[0_2px_20px_rgba(0,0,0,0.6)]">
 	<!-- Header -->
-	<div class="flex items-center justify-between px-4 py-[10px] bg-gradient-to-r from-osrs-card-head to-osrs-card border-b border-osrs-card-border">
-		<span class="font-pixel text-[8px] text-osrs-gold">{day.dateLabel}</span>
+	<div class="flex items-center justify-between px-4 py-[10px] lg:px-5 lg:py-[13px] bg-gradient-to-r from-osrs-card-head to-osrs-card border-b border-osrs-card-border">
+		<span class="font-pixel text-[8px] lg:text-[10px] text-osrs-gold">{day.dateLabel}</span>
 		<div class="flex gap-3 flex-wrap justify-end">
 			{#if day.skills.length > 0}
-				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
+				<span class="osrs-summary-badge">
 					<span class="text-osrs-gold">{day.skills.length}</span>
 					{day.skills.length === 1 ? 'level' : 'levels'}
 				</span>
 			{/if}
 			{#if day.bosses.length > 0}
-				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
+				<span class="osrs-summary-badge">
 					<span class="text-osrs-gold">{day.bosses.length}</span>
 					{day.bosses.length === 1 ? 'boss' : 'bosses'}
 				</span>
 			{/if}
 			{#if day.items.length > 0}
-				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
+				<span class="osrs-summary-badge">
 					<span class="text-osrs-gold">{day.items.length}</span>
 					{day.items.length === 1 ? 'item' : 'items'}
 				</span>
 			{/if}
 			{#if day.diaries.length > 0}
-				<span class="font-game text-[17px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default">
+				<span class="osrs-summary-badge">
 					<span class="text-osrs-gold">{day.diaries.length}</span>
 					{day.diaries.length === 1 ? 'diary' : 'diaries'}
 				</span>
@@ -44,7 +44,7 @@
 	<div class="px-4 py-3 flex flex-col gap-[14px]">
 		{#if day.skills.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
 					Level Ups
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
@@ -57,7 +57,7 @@
 
 		{#if day.bosses.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
 					Boss Kills
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
@@ -70,7 +70,7 @@
 
 		{#if day.items.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
 					Collection Log
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
@@ -83,7 +83,7 @@
 
 		{#if day.diaries.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
 					Achievement Diaries
 				</div>
 				<div class="flex flex-wrap gap-[6px]">

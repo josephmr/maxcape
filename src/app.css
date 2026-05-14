@@ -52,4 +52,16 @@ body {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
+
+  .chip-icon-pad {
+    @apply px-[7px] py-[6px] lg:px-[9px] lg:py-[8px];
+  }
+
+  .chip-content-pad {
+    @apply px-[10px] py-[4px] lg:px-3 lg:py-[6px];
+  }
+
+  .osrs-summary-badge {
+    @apply font-game text-[17px] lg:text-[21px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default;
+  }
 }
