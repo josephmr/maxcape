@@ -19,6 +19,9 @@ export function itemIconUrl(itemName: string): string {
 
 // Boss icons sourced from Wise Old Man (covers all hiscore bosses including Wintertodt).
 // Transform: lowercase, strip apostrophes, collapse colons/hyphens/spaces to underscores.
+export const diaryIconUrl = 'https://oldschool.runescape.wiki/images/Achievement_Diaries.png';
+
+// Boss icons sourced from Wise Old Man (covers all hiscore bosses including Wintertodt).
 export function bossImageUrl(bossName: string): string {
 	const filename = bossName
 		.toLowerCase()

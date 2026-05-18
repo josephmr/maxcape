@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import RecentPlayers from '$lib/components/RecentPlayers.svelte';
+	import type { PageData } from './$types';
 
+	let { data }: { data: PageData } = $props();
 	let playerName = $state('');
 
 	function search(e: Event) {
@@ -31,5 +34,9 @@
 				Search
 			</button>
 		</form>
+	</div>
+
+	<div class="w-full max-w-xl mt-6 px-4">
+		<RecentPlayers players={data.recentPlayers} />
 	</div>
 </div>

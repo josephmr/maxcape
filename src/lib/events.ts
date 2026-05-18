@@ -1,3 +1,10 @@
+export const EVENT_TYPE = {
+	SKILL_LEVEL_UP: 'SKILL_LEVEL_UP',
+	BOSS_KILL: 'BOSS_KILL',
+	COLLECTION_LOG: 'COLLECTION_LOG',
+	ACHIEVEMENT_DIARY: 'ACHIEVEMENT_DIARY',
+} as const;
+
 export interface SkillEntry {
 	skill: string;
 	level: number;
@@ -54,7 +61,7 @@ function normalizeTimestamp(ts: string): string {
 }
 
 function fillBucket(bucket: EventBucket, event: RawEvent): void {
-	if (event.eventType === 'SKILL_LEVEL_UP') {
+	if (event.eventType === EVENT_TYPE.SKILL_LEVEL_UP) {
 		const skill = String(event.data.skill ?? '');
 		const level = Number(event.data.level ?? 0);
 		if (skill && level > 0) {
@@ -68,7 +75,7 @@ function fillBucket(bucket: EventBucket, event: RawEvent): void {
 				});
 			}
 		}
-	} else if (event.eventType === 'BOSS_KILL') {
+	} else if (event.eventType === EVENT_TYPE.BOSS_KILL) {
 		const bossName = String(event.data.bossName ?? '');
 		const kills = Number(event.data.kills ?? 0);
 		const totalKc = event.data.totalKc != null ? Number(event.data.totalKc) : null;
@@ -83,10 +90,10 @@ function fillBucket(bucket: EventBucket, event: RawEvent): void {
 				});
 			}
 		}
-	} else if (event.eventType === 'COLLECTION_LOG') {
+	} else if (event.eventType === EVENT_TYPE.COLLECTION_LOG) {
 		const itemName = String(event.data.itemName ?? '');
 		if (itemName) bucket.items.add(itemName);
-	} else if (event.eventType === 'ACHIEVEMENT_DIARY') {
+	} else if (event.eventType === EVENT_TYPE.ACHIEVEMENT_DIARY) {
 		const area = String(event.data.area ?? '');
 		const difficulty = String(event.data.difficulty ?? '');
 		if (area && difficulty) {

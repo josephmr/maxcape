@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { diaryIconUrl } from '$lib/osrs';
 	let { area, difficulty }: { area: string; difficulty: string } = $props();
 
 	const tierColor: Record<string, string> = {
@@ -14,7 +15,7 @@
 <div class="flex items-stretch border border-osrs-chip-border overflow-hidden cursor-default">
 	<div class="bg-osrs-chip-icon chip-icon-pad flex items-center shrink-0 border-r border-osrs-chip-border">
 		<img
-			src="https://oldschool.runescape.wiki/images/Achievement_Diaries.png"
+			src={diaryIconUrl}
 			alt="Achievement Diary"
 			width="32"
 			height="32"
