@@ -27,10 +27,10 @@
 	</svg>
 </a>
 
-<div class="flex flex-col min-h-screen">
+<div class="flex flex-col min-h-dvh">
 	{@render children()}
 
-	<footer class="mt-auto flex justify-center items-center gap-1.5 py-4">
+	<footer class="flex justify-center items-center gap-1.5 py-4">
 		<span class="font-game text-[17px] lg:text-[19px] text-osrs-gold-dim">Made with</span>
 		<img
 			src="https://oldschool.runescape.wiki/images/Hitpoints_icon.png"
