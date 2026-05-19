@@ -8,8 +8,6 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<link rel="preload" href="/fonts/press-start-2p.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-	<link rel="preload" href="/fonts/vt323.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 </svelte:head>
 
 <ThemeSwitcher />

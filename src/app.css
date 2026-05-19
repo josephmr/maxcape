@@ -5,14 +5,14 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/press-start-2p.woff2') format('woff2');
+  src: url('./lib/assets/fonts/press-start-2p.woff2') format('woff2');
 }
 @font-face {
   font-family: 'VT323';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/vt323.woff2') format('woff2');
+  src: url('./lib/assets/fonts/vt323.woff2') format('woff2');
 }
 
 html,
