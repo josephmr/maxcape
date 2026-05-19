@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="osrs-bg flex-1 text-osrs-body font-game py-8 px-4 flex flex-col items-center">
+<main class="osrs-bg flex-1 text-osrs-body font-game py-8 px-4 flex flex-col items-center">
 	<div class="w-full max-w-[720px] lg:max-w-[900px]">
 		<a href="/" class="font-game text-[18px] lg:text-[22px] text-osrs-gold-dim hover:text-osrs-gold mb-6 inline-block">
 			&larr; Back
@@ -74,4 +74,4 @@
 			{/each}
 		{/if}
 	</div>
-</div>
+</main>

@@ -17,11 +17,21 @@ export function itemIconUrl(itemName: string): string {
 	return `https://oldschool.runescape.wiki/images/${sentenceCase.replace(/ /g, '_')}.png`;
 }
 
-// Boss icons sourced from Wise Old Man (covers all hiscore bosses including Wintertodt).
-// Transform: lowercase, strip apostrophes, collapse colons/hyphens/spaces to underscores.
 export const diaryIconUrl = 'https://oldschool.runescape.wiki/images/Achievement_Diaries.png';
 
-// Boss icons sourced from Wise Old Man (covers all hiscore bosses including Wintertodt).
+const bossIconModules = import.meta.glob<{ default: string }>(
+	'./assets/boss-icons/*.png',
+	{ eager: true }
+);
+
+const bossIconMap: Record<string, string> = Object.fromEntries(
+	Object.entries(bossIconModules).map(([path, mod]) => [
+		path.split('/').pop()!.replace('.png', ''),
+		mod.default,
+	])
+);
+
+// Transform: lowercase, strip apostrophes, collapse colons/hyphens/spaces to underscores.
 export function bossImageUrl(bossName: string): string {
 	const filename = bossName
 		.toLowerCase()
@@ -29,5 +39,5 @@ export function bossImageUrl(bossName: string): string {
 		.replace(/[:\-\s]+/g, '_')
 		.replace(/_+/g, '_')
 		.replace(/^_|_$/g, '');
-	return `/boss-icons/${filename}.png`;
+	return bossIconMap[filename] ?? `/boss-icons/${filename}.png`;
 }

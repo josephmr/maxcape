@@ -13,7 +13,12 @@
 	}
 </script>
 
-<div class="osrs-bg flex-1 flex flex-col items-center justify-center px-4 font-game text-osrs-body">
+<svelte:head>
+	<title>MaxCape | OSRS Milestone Tracker</title>
+	<meta name="description" content="Track your Old School RuneScape skill gains, boss kills, and collection log milestones with MaxCape." />
+</svelte:head>
+
+<main class="osrs-bg flex-1 flex flex-col items-center justify-center px-4 font-game text-osrs-body">
 	<div class="w-full max-w-sm lg:max-w-lg text-center">
 		<h1 class="font-pixel text-[22px] lg:text-[28px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px] mb-2">
 			MaxCape
@@ -39,4 +44,4 @@
 	<div class="w-full max-w-xl mt-6 px-4">
 		<RecentPlayers players={data.recentPlayers} />
 	</div>
-</div>
+</main>
