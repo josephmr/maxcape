@@ -36,13 +36,13 @@
 			<div class="flex font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border w-fit">
 				<a
 					href="/players/{playerName}{tzQuery}"
-					class="px-4 py-2 lg:px-5 lg:py-3 {activeTab === 'day' ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+					class="px-4 py-2 lg:px-5 lg:py-3 {activeTab === 'day' ? 'bg-osrs-accent text-osrs-accent-text' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
 				>
 					Day
 				</a>
 				<a
 					href="/players/{playerName}/month{tzQuery}"
-					class="px-4 py-2 lg:px-5 lg:py-3 border-l border-osrs-card-border {activeTab === 'month' ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+					class="px-4 py-2 lg:px-5 lg:py-3 border-l border-osrs-card-border {activeTab === 'month' ? 'bg-osrs-accent text-osrs-accent-text' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
 				>
 					Month
 				</a>
@@ -51,13 +51,13 @@
 			<div class="flex font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border w-fit">
 				<a
 					href={page.url.pathname}
-					class="px-4 py-2 lg:px-5 lg:py-3 {!isLocal ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+					class="px-4 py-2 lg:px-5 lg:py-3 {!isLocal ? 'bg-osrs-accent text-osrs-accent-text' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
 				>
 					UTC
 				</a>
 				<button
 					onclick={switchToLocal}
-					class="px-4 py-2 lg:px-5 lg:py-3 border-l border-osrs-card-border cursor-pointer {isLocal ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+					class="px-4 py-2 lg:px-5 lg:py-3 border-l border-osrs-card-border cursor-pointer {isLocal ? 'bg-osrs-accent text-osrs-accent-text' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
 				>
 					Local
 				</button>

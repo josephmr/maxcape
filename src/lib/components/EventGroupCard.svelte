@@ -8,7 +8,7 @@
 	let { day }: { day: EventGroup } = $props();
 </script>
 
-<div class="mb-5 border border-osrs-card-border card-accent-border bg-osrs-card shadow-[0_2px_20px_rgba(0,0,0,0.6)]">
+<div class="mb-5 border border-osrs-card-border card-accent-border bg-osrs-card">
 	<!-- Header -->
 	<div class="flex items-center justify-between px-4 py-[10px] lg:px-5 lg:py-[13px] bg-osrs-card-head border-b border-osrs-card-border">
 		<span class="font-pixel text-[8px] lg:text-[10px] text-osrs-gold">{day.dateLabel}</span>
