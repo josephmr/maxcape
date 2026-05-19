@@ -2,7 +2,7 @@
 
 html,
 body {
-  background-color: #06050a;
+  background-color: var(--color-osrs-bg);
   min-height: 100dvh;
 }
 
@@ -28,6 +28,9 @@ body {
   --color-osrs-head-div:       #2e2818;
   --color-osrs-summary-border: #382e14;
   --color-osrs-summary-text:   #a09060;
+  --color-osrs-card-end:       #0d0b07;
+  --color-osrs-grid:           rgba(200,160,75,0.04);
+  --color-osrs-shadow:         #000000;
 
   /* Achievement diary tier colors — subdued to match overall aesthetic */
   --color-osrs-tier-elite:  #7a6530;
@@ -36,12 +39,40 @@ body {
   --color-osrs-tier-easy:   #35663a;
 }
 
+[data-theme="light"] {
+  --color-osrs-bg:             #d4c490;
+  --color-osrs-card:           #f0e4bc;
+  --color-osrs-card-head:      #c8a850;
+  --color-osrs-card-border:    #8b6930;
+  --color-osrs-accent:         #c8a04b;
+  --color-osrs-chip-bg:        #e8d898;
+  --color-osrs-chip-icon:      #ddd090;
+  --color-osrs-chip-border:    #a08838;
+  --color-osrs-gold:           #7a4800;
+  --color-osrs-gold-dim:       #8b5a14;
+  --color-osrs-gold-bright:    #c87800;
+  --color-osrs-chip-skill:     #5c3c10;
+  --color-osrs-chip-item:      #4a2c08;
+  --color-osrs-body:           #2c1a0a;
+  --color-osrs-section-div:    #c0a060;
+  --color-osrs-head-div:       #a88840;
+  --color-osrs-summary-border: #907030;
+  --color-osrs-summary-text:   #6a4c18;
+  --color-osrs-card-end:       #d8c898;
+  --color-osrs-grid:           rgba(100,70,20,0.06);
+  --color-osrs-shadow:         #3d1a00;
+  --color-osrs-tier-elite:     #8b7035;
+  --color-osrs-tier-hard:      #8b4030;
+  --color-osrs-tier-medium:    #2a6080;
+  --color-osrs-tier-easy:      #2a6030;
+}
+
 @layer utilities {
   .osrs-bg {
-    background-color: #06050a;
+    background-color: var(--color-osrs-bg);
     background-image:
-      repeating-linear-gradient(0deg,  transparent, transparent 31px, rgba(200,160,75,0.04) 31px, rgba(200,160,75,0.04) 32px),
-      repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(200,160,75,0.04) 31px, rgba(200,160,75,0.04) 32px);
+      repeating-linear-gradient(0deg,  transparent, transparent 31px, var(--color-osrs-grid) 31px, var(--color-osrs-grid) 32px),
+      repeating-linear-gradient(90deg, transparent, transparent 31px, var(--color-osrs-grid) 31px, var(--color-osrs-grid) 32px);
   }
 
   .card-accent-border {

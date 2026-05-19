@@ -26,7 +26,7 @@
 		</a>
 
 		<header class="text-center mb-8 pb-5 border-b border-osrs-head-div relative">
-			<h1 class="font-pixel text-[20px] lg:text-[25px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px]">
+			<h1 class="font-pixel text-[20px] lg:text-[25px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_var(--color-osrs-shadow)] tracking-[2px]">
 				{playerName}
 			</h1>
 			<span class="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-[120px] h-px bg-osrs-accent"></span>
