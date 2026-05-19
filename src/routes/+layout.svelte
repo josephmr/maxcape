@@ -27,22 +27,24 @@
 	</svg>
 </a>
 
-{@render children()}
+<div class="flex flex-col min-h-screen">
+	{@render children()}
 
-<footer class="fixed bottom-4 left-0 right-0 flex justify-center items-center gap-1.5">
-	<span class="font-game text-[17px] lg:text-[19px] text-osrs-gold-dim">Made with</span>
-	<img
-		src="https://oldschool.runescape.wiki/images/Hitpoints_icon.png"
-		alt="hitpoints"
-		width="16"
-		height="16"
-		class="pixelated w-4 h-4 object-contain"
-	/>
-	<span class="font-game text-[17px] lg:text-[19px] text-osrs-gold-dim">by</span>
-	<a
-		href="https://github.com/josephmr"
-		target="_blank"
-		rel="noopener noreferrer"
-		class="font-game text-[17px] lg:text-[19px] text-osrs-gold-dim hover:text-osrs-gold transition-colors duration-[120ms]"
-	>josephmr</a>
-</footer>
+	<footer class="mt-auto flex justify-center items-center gap-1.5 py-4">
+		<span class="font-game text-[17px] lg:text-[19px] text-osrs-gold-dim">Made with</span>
+		<img
+			src="https://oldschool.runescape.wiki/images/Hitpoints_icon.png"
+			alt="hitpoints"
+			width="16"
+			height="16"
+			class="pixelated w-4 h-4 object-contain"
+		/>
+		<span class="font-game text-[17px] lg:text-[19px] text-osrs-gold-dim">by</span>
+		<a
+			href="https://github.com/josephmr"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="font-game text-[17px] lg:text-[19px] text-osrs-gold-dim hover:text-osrs-gold transition-colors duration-[120ms]"
+		>josephmr</a>
+	</footer>
+</div>
