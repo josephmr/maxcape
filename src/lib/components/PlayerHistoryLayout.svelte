@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { EventGroup } from '$lib/events';
+	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
 	import EventGroupCard from './EventGroupCard.svelte';
 
 	let { playerName, activeTab, groups }: {
@@ -7,6 +9,14 @@
 		activeTab: 'day' | 'month';
 		groups: EventGroup[];
 	} = $props();
+
+	let currentTz = $derived(page.url.searchParams.get('tz') ?? '');
+	let isLocal = $derived(!!currentTz);
+	let tzQuery = $derived(isLocal ? '?tz=' + encodeURIComponent(currentTz) : '');
+
+	function switchToLocal() {
+		goto(page.url.pathname + '?tz=' + encodeURIComponent(Intl.DateTimeFormat().resolvedOptions().timeZone));
+	}
 </script>
 
 <div class="osrs-bg min-h-dvh text-osrs-body font-game py-8 px-4 flex flex-col items-center">
@@ -19,22 +29,39 @@
 			<h1 class="font-pixel text-[20px] lg:text-[25px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px]">
 				{playerName}
 			</h1>
-<span class="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-[120px] h-px bg-osrs-accent"></span>
+			<span class="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-[120px] h-px bg-osrs-accent"></span>
 		</header>
 
-		<div class="flex mb-6 font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border w-fit ml-auto">
-			<a
-				href="/players/{playerName}"
-				class="px-4 py-2 lg:px-5 lg:py-3 {activeTab === 'day' ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
-			>
-				Day
-			</a>
-			<a
-				href="/players/{playerName}/month"
-				class="px-4 py-2 lg:px-5 lg:py-3 border-l border-osrs-card-border {activeTab === 'month' ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
-			>
-				Month
-			</a>
+		<div class="flex justify-between items-center mb-6">
+			<div class="flex font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border w-fit">
+				<a
+					href="/players/{playerName}{tzQuery}"
+					class="px-4 py-2 lg:px-5 lg:py-3 {activeTab === 'day' ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+				>
+					Day
+				</a>
+				<a
+					href="/players/{playerName}/month{tzQuery}"
+					class="px-4 py-2 lg:px-5 lg:py-3 border-l border-osrs-card-border {activeTab === 'month' ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+				>
+					Month
+				</a>
+			</div>
+
+			<div class="flex font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border w-fit">
+				<a
+					href={page.url.pathname}
+					class="px-4 py-2 lg:px-5 lg:py-3 {!isLocal ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+				>
+					UTC
+				</a>
+				<button
+					onclick={switchToLocal}
+					class="px-4 py-2 lg:px-5 lg:py-3 border-l border-osrs-card-border cursor-pointer {isLocal ? 'bg-osrs-accent text-black' : 'text-osrs-gold-dim hover:text-osrs-gold'}"
+				>
+					Local
+				</button>
+			</div>
 		</div>
 
 		{#if groups.length === 0}

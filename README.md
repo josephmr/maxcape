@@ -1,42 +1,34 @@
-# sv
+# MaxCape
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+MaxCape is an OSRS milestone tracker. It records skill level-ups, collection log additions, boss kills, and achievement diary completions — giving you a timestamped history of how your account has progressed.
 
-## Creating a project
+Check it out at [maxcape.net](https://maxcape.net)!
 
-If you're seeing this, you've probably already done this step. Congrats!
+Events are sent by the [Account History RuneLite plugin](https://github.com/josephmr/account-history), which runs in the background and forwards milestones to MaxCape as they happen.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Features
 
-To recreate this project with the same configuration:
+- **Day and month views** — browse your milestones grouped by day or by month
+- **UTC / Local timezone** — switch between UTC and your local timezone for event grouping
+- **Recent players** — check out players who have logged events recently
 
-```sh
-# recreate this project
-npx sv@0.15.3 create --template minimal --types ts --install npm web
-```
+## Tech stack
+
+- [SvelteKit](https://kit.svelte.dev) with Svelte 5
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Drizzle ORM](https://orm.drizzle.team) + SQLite via `better-sqlite3`
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies and start the dev server:
 
 ```sh
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
 
-To create a production version of your app:
-
 ```sh
 npm run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

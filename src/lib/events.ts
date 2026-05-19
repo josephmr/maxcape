@@ -36,12 +36,9 @@ export interface EventGroup {
 }
 
 interface RawEvent {
-	id: number;
-	playerName: string;
 	eventType: string;
 	timestamp: string;
 	data: Record<string, unknown>;
-	createdAt: string;
 }
 
 interface EventBucket {
@@ -138,10 +135,11 @@ function groupEvents(
 		.map(([key, bucket]) => bucketToGroup(key, bucket, labelOf(key)));
 }
 
-export function groupEventsByDay(events: RawEvent[]): EventGroup[] {
+export function groupEventsByDay(events: RawEvent[], timeZone = 'UTC'): EventGroup[] {
+	const fmt = timeZone !== 'UTC' ? new Intl.DateTimeFormat('en-CA', { timeZone }) : null;
 	return groupEvents(
 		events,
-		(ts) => new Date(ts).toISOString().slice(0, 10),
+		fmt ? (ts) => fmt.format(new Date(ts)) : (ts) => ts.slice(0, 10),
 		(key) => {
 			const [y, m, d] = key.split('-').map(Number);
 			return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-GB', {
@@ -155,10 +153,11 @@ export function groupEventsByDay(events: RawEvent[]): EventGroup[] {
 	);
 }
 
-export function groupEventsByMonth(events: RawEvent[]): EventGroup[] {
+export function groupEventsByMonth(events: RawEvent[], timeZone = 'UTC'): EventGroup[] {
+	const fmt = timeZone !== 'UTC' ? new Intl.DateTimeFormat('en-CA', { timeZone }) : null;
 	return groupEvents(
 		events,
-		(ts) => new Date(ts).toISOString().slice(0, 7),
+		fmt ? (ts) => fmt.format(new Date(ts)).slice(0, 7) : (ts) => ts.slice(0, 7),
 		(key) => {
 			const [y, m] = key.split('-').map(Number);
 			return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString('en-GB', {
