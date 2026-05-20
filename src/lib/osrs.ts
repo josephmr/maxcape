@@ -1,5 +1,13 @@
+function wikiEncode(filename: string): string {
+	return filename
+		.replace(/ /g, '_')
+		.replace(/[^A-Za-z0-9\-_.]/g, char =>
+			`%${char.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0')}`
+		);
+}
+
 export function skillIconUrl(skill: string): string {
-	return `https://oldschool.runescape.wiki/images/${skill.replace(/ /g, '_')}_icon.png`;
+	return `https://oldschool.runescape.wiki/images/${wikiEncode(skill)}_icon.png`;
 }
 
 // Wiki image filename overrides for items whose name doesn't match the image file directly
@@ -11,10 +19,10 @@ const ITEM_IMAGE_OVERRIDES: Record<string, string> = {
 export function itemIconUrl(itemName: string): string {
 	const override = ITEM_IMAGE_OVERRIDES[itemName];
 	if (override) {
-		return `https://oldschool.runescape.wiki/images/${override}`;
+		return `https://oldschool.runescape.wiki/images/${wikiEncode(override)}`;
 	}
 	const sentenceCase = itemName.charAt(0).toUpperCase() + itemName.slice(1).toLowerCase();
-	return `https://oldschool.runescape.wiki/images/${sentenceCase.replace(/ /g, '_')}.png`;
+	return `https://oldschool.runescape.wiki/images/${wikiEncode(sentenceCase)}.png`;
 }
 
 export const diaryIconUrl = 'https://oldschool.runescape.wiki/images/Achievement_Diaries.png';

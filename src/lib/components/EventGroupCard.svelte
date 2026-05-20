@@ -7,6 +7,8 @@
 	import QuestChip from './QuestChip.svelte';
 
 	let { day }: { day: EventGroup } = $props();
+
+	const totalLevels = $derived(day.skills.reduce((sum, e) => sum + e.levelsGained, 0));
 </script>
 
 <div class="mb-5 border border-osrs-card-border card-accent-border bg-osrs-card">
@@ -16,8 +18,8 @@
 		<div class="flex gap-3 flex-wrap justify-end">
 			{#if day.skills.length > 0}
 				<span class="osrs-summary-badge">
-					<span class="text-osrs-gold">{day.skills.length}</span>
-					{day.skills.length === 1 ? 'level' : 'levels'}
+					<span class="text-osrs-gold">{totalLevels}</span>
+					{totalLevels === 1 ? 'level' : 'levels'}
 				</span>
 			{/if}
 			{#if day.bosses.length > 0}
