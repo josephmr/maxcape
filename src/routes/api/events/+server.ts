@@ -3,7 +3,7 @@ import type { RequestHandler } from './$types';
 import { db, countPlayers } from '$lib/server/db';
 import { events, players } from '$lib/server/schema';
 import { sql } from 'drizzle-orm';
-import { eventsIngestedTotal, uniqueAccountsGauge } from '$lib/server/metrics';
+import { eventsIngestedTotal, uniqueAccountsGauge, totalEventsGauge } from '$lib/server/metrics';
 
 const NOW = sql`(datetime('now'))`;
 
@@ -64,6 +64,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 		data:        JSON.stringify(stripColorTags(data))
 	});
 	eventsIngestedTotal.inc({ event_type: typeStr });
+	totalEventsGauge.inc();
 
 	return json({ ok: true }, { status: 201 });
 };

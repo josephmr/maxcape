@@ -31,3 +31,9 @@ export const uniqueAccountsGauge = new Gauge({
 	help: 'Number of unique player accounts tracked',
 	registers: [registry],
 });
+
+export const totalEventsGauge = new Gauge({
+	name: 'events_total',
+	help: 'Total game events ingested all time',
+	registers: [registry],
+});

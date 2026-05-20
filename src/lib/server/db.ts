@@ -32,3 +32,8 @@ export async function countPlayers(): Promise<number> {
 	const [{ count }] = await db.select({ count: sql<number>`count(*)` }).from(schema.players);
 	return count;
 }
+
+export async function countEvents(): Promise<number> {
+	const [{ count }] = await db.select({ count: sql<number>`count(*)` }).from(schema.events);
+	return count;
+}
