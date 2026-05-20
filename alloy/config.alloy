@@ -1,7 +1,7 @@
 // ── Metrics: scrape app, push to Grafana Cloud Mimir ─────────────────────────
 
 prometheus.scrape "web_app" {
-  targets = [{"__address__" = env("APP_HOST"), "app" = "maxcape"}]
+  targets = [{"__address__" = env("APP_HOST"), "app" = "maxcape", "__scheme__" = "https"}]
   metrics_path    = "/metrics"
   scrape_interval = "15s"
 
