@@ -1,8 +1,9 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/server/db';
+import { db, countPlayers } from '$lib/server/db';
 import { events, players } from '$lib/server/schema';
 import { sql } from 'drizzle-orm';
+import { eventsIngestedTotal, uniqueAccountsGauge } from '$lib/server/metrics';
 
 const NOW = sql`(datetime('now'))`;
 
@@ -19,7 +20,7 @@ function stripColorTags(value: unknown): unknown {
 	return value;
 }
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async ({ request, locals }) => {
 	let body: unknown;
 	try {
 		body = await request.json();
@@ -38,9 +39,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	const hashStr = String(accountHash);
 	const nameStr = String(playerName);
+	const typeStr = String(type);
+
+	locals.logExtra = { account_hash: hashStr, event_type: typeStr };
 
 	// ACCOUNT_IDENTIFY updates the player mapping only — no event row is written
-	if (String(type) === 'ACCOUNT_IDENTIFY') {
+	if (typeStr === 'ACCOUNT_IDENTIFY') {
 		await db
 			.insert(players)
 			.values({ accountHash: hashStr, playerName: nameStr, updatedAt: NOW })
@@ -48,16 +52,18 @@ export const POST: RequestHandler = async ({ request }) => {
 				target: players.accountHash,
 				set: { playerName: nameStr, updatedAt: NOW }
 			});
+		uniqueAccountsGauge.set(await countPlayers());
 		return json({ ok: true }, { status: 200 });
 	}
 
 	await db.insert(events).values({
 		accountHash: hashStr,
 		playerName:  nameStr,
-		eventType:   String(type),
+		eventType:   typeStr,
 		timestamp:   String(timestamp),
 		data:        JSON.stringify(stripColorTags(data))
 	});
+	eventsIngestedTotal.inc({ event_type: typeStr });
 
 	return json({ ok: true }, { status: 201 });
 };

@@ -1,0 +1,69 @@
+// ── Metrics: scrape app, push to Grafana Cloud Mimir ─────────────────────────
+
+prometheus.scrape "web_app" {
+  targets = [{"__address__" = env("APP_HOST"), "app" = "maxcape"}]
+  metrics_path    = "/metrics"
+  scrape_interval = "15s"
+
+  authorization {
+    type        = "Bearer"
+    credentials = env("METRICS_TOKEN")
+  }
+
+  forward_to = [prometheus.remote_write.grafana_cloud.receiver]
+}
+
+prometheus.remote_write "grafana_cloud" {
+  endpoint {
+    url = env("GRAFANA_CLOUD_PROM_URL")
+
+    basic_auth {
+      username = env("GRAFANA_CLOUD_PROM_USER")
+      password = env("GRAFANA_CLOUD_API_KEY")
+    }
+  }
+}
+
+// ── Logs: read Docker container stdout, push to Grafana Cloud Loki ───────────
+
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+loki.source.docker "containers" {
+  host    = "unix:///var/run/docker.sock"
+  targets = discovery.docker.containers.targets
+
+  forward_to = [loki.process.parse_json.receiver]
+}
+
+loki.process "parse_json" {
+  stage.json {
+    expressions = {
+      method = "method",
+      route  = "route",
+      status = "status",
+    }
+  }
+
+  stage.labels {
+    values = {
+      method = "",
+      route  = "",
+      status = "",
+    }
+  }
+
+  forward_to = [loki.write.grafana_cloud.receiver]
+}
+
+loki.write "grafana_cloud" {
+  endpoint {
+    url = env("GRAFANA_CLOUD_LOKI_URL")
+
+    basic_auth {
+      username = env("GRAFANA_CLOUD_LOKI_USER")
+      password = env("GRAFANA_CLOUD_API_KEY")
+    }
+  }
+}

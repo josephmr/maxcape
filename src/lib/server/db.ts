@@ -1,5 +1,6 @@
 import Database from 'better-sqlite3';
 import { drizzle } from 'drizzle-orm/better-sqlite3';
+import { sql } from 'drizzle-orm';
 import * as schema from './schema';
 
 const dbPath = process.env.DATABASE_URL ?? 'maxcape.db';
@@ -26,3 +27,8 @@ sqlite.exec(`
 `);
 
 export const db = drizzle(sqlite, { schema });
+
+export async function countPlayers(): Promise<number> {
+	const [{ count }] = await db.select({ count: sql<number>`count(*)` }).from(schema.players);
+	return count;
+}
