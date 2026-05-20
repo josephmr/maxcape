@@ -41,7 +41,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	const nameStr = String(playerName);
 	const typeStr = String(type);
 
-	locals.logExtra = { account_hash: hashStr, event_type: typeStr };
+	locals.logExtra = { account_hash: hashStr, event_type: typeStr, data };
 
 	// ACCOUNT_IDENTIFY updates the player mapping only — no event row is written
 	if (typeStr === 'ACCOUNT_IDENTIFY') {
