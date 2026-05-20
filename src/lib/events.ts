@@ -3,6 +3,7 @@ export const EVENT_TYPE = {
 	BOSS_KILL: 'BOSS_KILL',
 	COLLECTION_LOG: 'COLLECTION_LOG',
 	ACHIEVEMENT_DIARY: 'ACHIEVEMENT_DIARY',
+	QUEST_COMPLETED: 'QUEST_COMPLETED',
 } as const;
 
 export interface SkillEntry {
@@ -26,6 +27,10 @@ export interface DiaryEntry {
 	difficulty: string;
 }
 
+export interface QuestEntry {
+	questName: string;
+}
+
 export interface EventGroup {
 	dateKey: string;
 	dateLabel: string;
@@ -33,6 +38,7 @@ export interface EventGroup {
 	bosses: BossEntry[];
 	items: ItemEntry[];
 	diaries: DiaryEntry[];
+	quests: QuestEntry[];
 }
 
 interface RawEvent {
@@ -46,10 +52,11 @@ interface EventBucket {
 	bosses: Map<string, { killsToday: number; totalKc: number | null }>;
 	items: Set<string>;
 	diaries: Map<string, DiaryEntry>;
+	quests: Set<string>;
 }
 
 function emptyBucket(): EventBucket {
-	return { skills: new Map(), bosses: new Map(), items: new Set(), diaries: new Map() };
+	return { skills: new Map(), bosses: new Map(), items: new Set(), diaries: new Map(), quests: new Set() };
 }
 
 function normalizeTimestamp(ts: string): string {
@@ -99,6 +106,9 @@ function fillBucket(bucket: EventBucket, event: RawEvent): void {
 				bucket.diaries.set(key, { area, difficulty });
 			}
 		}
+	} else if (event.eventType === EVENT_TYPE.QUEST_COMPLETED) {
+		const questName = String(event.data.questName ?? '');
+		if (questName) bucket.quests.add(questName);
 	}
 }
 
@@ -115,7 +125,10 @@ function bucketToGroup(key: string, bucket: EventBucket, dateLabel: string): Eve
 		items: Array.from(bucket.items)
 			.map((itemName) => ({ itemName }))
 			.sort((a, b) => a.itemName.localeCompare(b.itemName)),
-		diaries: Array.from(bucket.diaries.values())
+		diaries: Array.from(bucket.diaries.values()),
+		quests: Array.from(bucket.quests)
+			.map((questName) => ({ questName }))
+			.sort((a, b) => a.questName.localeCompare(b.questName))
 	};
 }
 

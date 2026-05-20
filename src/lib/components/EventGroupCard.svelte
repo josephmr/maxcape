@@ -4,6 +4,7 @@
 	import BossChip from './BossChip.svelte';
 	import ItemChip from './ItemChip.svelte';
 	import DiaryChip from './DiaryChip.svelte';
+	import QuestChip from './QuestChip.svelte';
 
 	let { day }: { day: EventGroup } = $props();
 </script>
@@ -35,6 +36,12 @@
 				<span class="osrs-summary-badge">
 					<span class="text-osrs-gold">{day.diaries.length}</span>
 					{day.diaries.length === 1 ? 'diary' : 'diaries'}
+				</span>
+			{/if}
+			{#if day.quests.length > 0}
+				<span class="osrs-summary-badge">
+					<span class="text-osrs-gold">{day.quests.length}</span>
+					{day.quests.length === 1 ? 'quest' : 'quests'}
 				</span>
 			{/if}
 		</div>
@@ -89,6 +96,19 @@
 				<div class="flex flex-wrap gap-[6px]">
 					{#each day.diaries as entry (`${entry.area}:${entry.difficulty}`)}
 						<DiaryChip area={entry.area} difficulty={entry.difficulty} />
+					{/each}
+				</div>
+			</div>
+		{/if}
+
+		{#if day.quests.length > 0}
+			<div>
+				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+					Quests
+				</div>
+				<div class="flex flex-wrap gap-[6px]">
+					{#each day.quests as entry (entry.questName)}
+						<QuestChip questName={entry.questName} />
 					{/each}
 				</div>
 			</div>
