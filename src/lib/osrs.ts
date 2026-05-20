@@ -27,6 +27,7 @@ export function itemIconUrl(itemName: string): string {
 
 export const diaryIconUrl = 'https://oldschool.runescape.wiki/images/Achievement_Diaries.png';
 export const questPointIconUrl = 'https://oldschool.runescape.wiki/images/Quest_point_icon.png';
+export const unknownIconUrl = 'https://oldschool.runescape.wiki/images/Sapphire.png';
 
 const bossIconModules = import.meta.glob<{ default: string }>(
 	'./assets/boss-icons/*.png',

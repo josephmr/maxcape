@@ -1,6 +1,6 @@
 import { db } from '$lib/server/db';
 import { sql } from 'drizzle-orm';
-import { skillIconUrl, bossImageUrl, itemIconUrl, diaryIconUrl } from '$lib/osrs';
+import { skillIconUrl, bossImageUrl, itemIconUrl, diaryIconUrl, questPointIconUrl, unknownIconUrl } from '$lib/osrs';
 import { EVENT_TYPE } from '$lib/events';
 import type { PageServerLoad } from './$types';
 
@@ -35,8 +35,10 @@ export const load: PageServerLoad = () => {
 			iconUrl = bossImageUrl(String(data.bossName ?? ''));
 		} else if (row.event_type === EVENT_TYPE.COLLECTION_LOG) {
 			iconUrl = itemIconUrl(String(data.itemName ?? ''));
+		} else if (row.event_type === EVENT_TYPE.QUEST_COMPLETED) {
+			iconUrl = questPointIconUrl;
 		} else {
-			iconUrl = diaryIconUrl;
+			iconUrl = unknownIconUrl;
 		}
 
 		return { playerName: row.player_name, iconUrl };
