@@ -38,6 +38,11 @@ loki.source.docker "containers" {
 }
 
 loki.process "parse_json" {
+  stage.drop {
+    older_than          = "168h"
+    drop_counter_reason = "too_old"
+  }
+
   stage.json {
     expressions = {
       method = "method",
