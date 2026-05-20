@@ -19,7 +19,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   const durationMs = performance.now() - start;
   const route = event.route.id ?? event.url.pathname;
 
-  if (route !== "/metrics") {
+  if (event.route.id && route !== "/metrics") {
     const labels = {
       method: event.request.method,
       route,
