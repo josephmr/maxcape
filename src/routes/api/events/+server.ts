@@ -95,7 +95,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 			stripColorTags(data) as Record<string, unknown>
 		);
 		await db.insert(events).values(normalized.map(row => ({ ...row, eventType: typeStr })));
-		eventsIngestedTotal.inc({ event_type: typeStr });
+		eventsIngestedTotal.inc({ event_type: typeStr }, normalized.length);
 		totalEventsGauge.inc(normalized.length);
 	} else {
 		await db.insert(events).values({
