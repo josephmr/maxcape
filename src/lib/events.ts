@@ -81,15 +81,14 @@ function fillBucket(bucket: EventBucket, event: RawEvent): void {
 		}
 	} else if (event.eventType === EVENT_TYPE.BOSS_KILL) {
 		const bossName = String(event.data.bossName ?? '');
-		const kills = Number(event.data.kills ?? 0);
 		const totalKc = event.data.totalKc != null ? Number(event.data.totalKc) : null;
-		if (bossName && kills > 0) {
+		if (bossName) {
 			const existing = bucket.bosses.get(bossName);
 			if (!existing) {
-				bucket.bosses.set(bossName, { killsToday: kills, totalKc });
+				bucket.bosses.set(bossName, { killsToday: 1, totalKc });
 			} else {
 				bucket.bosses.set(bossName, {
-					killsToday: existing.killsToday + kills,
+					killsToday: existing.killsToday + 1,
 					totalKc: totalKc ?? existing.totalKc
 				});
 			}

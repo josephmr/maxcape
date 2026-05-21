@@ -16,6 +16,7 @@ ENV HOST_HEADER=x-forwarded-host
 
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/scripts ./scripts
 COPY package.json .
 
 VOLUME /data
