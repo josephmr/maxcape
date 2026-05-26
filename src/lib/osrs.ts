@@ -1,3 +1,5 @@
+import itemImageOverrides from './config/item-image-overrides.json';
+
 function wikiEncode(filename: string): string {
 	return filename
 		.replace(/ /g, '_')
@@ -10,14 +12,8 @@ export function skillIconUrl(skill: string): string {
 	return `https://oldschool.runescape.wiki/images/${wikiEncode(skill)}_icon.png`;
 }
 
-// Wiki image filename overrides for items whose name doesn't match the image file directly
-// (e.g. disambiguated items that share an image across variants).
-const ITEM_IMAGE_OVERRIDES: Record<string, string> = {
-	'Ore pack': "Ore_pack_(Giants'_Foundry).png"
-};
-
 export function itemIconUrl(itemName: string): string {
-	const override = ITEM_IMAGE_OVERRIDES[itemName];
+	const override = (itemImageOverrides as Record<string, string>)[itemName];
 	if (override) {
 		return `https://oldschool.runescape.wiki/images/${wikiEncode(override)}`;
 	}
