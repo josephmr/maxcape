@@ -1,113 +1,125 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
-  font-family: 'Press Start 2P';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./lib/assets/fonts/press-start-2p.woff2') format('woff2');
+	font-family: 'Press Start 2P';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./lib/assets/fonts/press-start-2p.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'VT323';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./lib/assets/fonts/vt323.woff2') format('woff2');
+	font-family: 'VT323';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./lib/assets/fonts/vt323.woff2') format('woff2');
 }
 
 html,
 body {
-  background-color: var(--color-osrs-bg);
-  min-height: 100dvh;
+	background-color: var(--color-osrs-bg);
+	min-height: 100dvh;
 }
 
 @theme {
-  --font-pixel: 'Press Start 2P', cursive;
-  --font-game:  'VT323', monospace;
+	--font-pixel: 'Press Start 2P', cursive;
+	--font-game: 'VT323', monospace;
 
-  --color-osrs-bg:             #0c0a07;
-  --color-osrs-card:           #1a140d;
-  --color-osrs-card-head:      #372b16;
-  --color-osrs-card-border:    #2c220e;
-  --color-osrs-accent:         #c8a04b;
-  --color-osrs-chip-bg:        #1d150d;
-  --color-osrs-chip-icon:      #23190a;
-  --color-osrs-chip-border:    #3d2c14;
-  --color-osrs-gold:           #d8b060;
-  --color-osrs-gold-dim:       #907848;
-  --color-osrs-gold-bright:    #e8d060;
-  --color-osrs-chip-skill:     #d0bc88;
-  --color-osrs-chip-item:      #d8c888;
-  --color-osrs-body:           #ecdcb0;
-  --color-osrs-section-div:    #281e0d;
-  --color-osrs-head-div:       #3a2c19;
-  --color-osrs-summary-border: #463517;
-  --color-osrs-summary-text:   #a09060;
-  --color-osrs-accent-text:    #000000;
-  --color-osrs-grid:           rgba(200,160,75,0.04);
-  --color-osrs-shadow:         #000000;
+	--color-osrs-bg: #0c0a07;
+	--color-osrs-card: #1a140d;
+	--color-osrs-card-head: #372b16;
+	--color-osrs-card-border: #2c220e;
+	--color-osrs-accent: #c8a04b;
+	--color-osrs-chip-bg: #1d150d;
+	--color-osrs-chip-icon: #23190a;
+	--color-osrs-chip-border: #3d2c14;
+	--color-osrs-gold: #d8b060;
+	--color-osrs-gold-dim: #907848;
+	--color-osrs-gold-bright: #e8d060;
+	--color-osrs-chip-skill: #d0bc88;
+	--color-osrs-chip-item: #d8c888;
+	--color-osrs-body: #ecdcb0;
+	--color-osrs-section-div: #281e0d;
+	--color-osrs-head-div: #3a2c19;
+	--color-osrs-summary-border: #463517;
+	--color-osrs-summary-text: #a09060;
+	--color-osrs-accent-text: #000000;
+	--color-osrs-grid: rgba(200, 160, 75, 0.04);
+	--color-osrs-shadow: #000000;
 
-  /* Achievement diary tier colors — subdued to match overall aesthetic */
-  --color-osrs-tier-elite:  #7a6530;
-  --color-osrs-tier-hard:   #7a3828;
-  --color-osrs-tier-medium: #345f7a;
-  --color-osrs-tier-easy:   #35663a;
+	/* Achievement diary tier colors — subdued to match overall aesthetic */
+	--color-osrs-tier-elite: #7a6530;
+	--color-osrs-tier-hard: #7a3828;
+	--color-osrs-tier-medium: #345f7a;
+	--color-osrs-tier-easy: #35663a;
 }
 
-[data-theme="light"] {
-  --color-osrs-bg:             #d4c490;
-  --color-osrs-card:           #f0e4bc;
-  --color-osrs-card-head:      #c8a850;
-  --color-osrs-card-border:    #8b6930;
-  --color-osrs-accent:         #b07828;
-  --color-osrs-chip-bg:        #e8d898;
-  --color-osrs-chip-icon:      #ddd090;
-  --color-osrs-chip-border:    #a08838;
-  --color-osrs-gold:           #4e3010;
-  --color-osrs-gold-dim:       #6a4820;
-  --color-osrs-gold-bright:    #c87818;
-  --color-osrs-chip-skill:     #5c3c10;
-  --color-osrs-chip-item:      #4a2c08;
-  --color-osrs-body:           #2c1a0a;
-  --color-osrs-section-div:    #c0a060;
-  --color-osrs-head-div:       #a88840;
-  --color-osrs-summary-border: #907030;
-  --color-osrs-summary-text:   #6a4c18;
-  --color-osrs-accent-text:    #2c1a0a;
-  --color-osrs-grid:           rgba(100,70,20,0.06);
-  --color-osrs-shadow:         #3d1a00;
-  --color-osrs-tier-elite:     #8b7035;
-  --color-osrs-tier-hard:      #8b4030;
-  --color-osrs-tier-medium:    #2a6080;
-  --color-osrs-tier-easy:      #2a6030;
+[data-theme='light'] {
+	--color-osrs-bg: #d4c490;
+	--color-osrs-card: #f0e4bc;
+	--color-osrs-card-head: #c8a850;
+	--color-osrs-card-border: #8b6930;
+	--color-osrs-accent: #b07828;
+	--color-osrs-chip-bg: #e8d898;
+	--color-osrs-chip-icon: #ddd090;
+	--color-osrs-chip-border: #a08838;
+	--color-osrs-gold: #4e3010;
+	--color-osrs-gold-dim: #6a4820;
+	--color-osrs-gold-bright: #c87818;
+	--color-osrs-chip-skill: #5c3c10;
+	--color-osrs-chip-item: #4a2c08;
+	--color-osrs-body: #2c1a0a;
+	--color-osrs-section-div: #c0a060;
+	--color-osrs-head-div: #a88840;
+	--color-osrs-summary-border: #907030;
+	--color-osrs-summary-text: #6a4c18;
+	--color-osrs-accent-text: #2c1a0a;
+	--color-osrs-grid: rgba(100, 70, 20, 0.06);
+	--color-osrs-shadow: #3d1a00;
+	--color-osrs-tier-elite: #8b7035;
+	--color-osrs-tier-hard: #8b4030;
+	--color-osrs-tier-medium: #2a6080;
+	--color-osrs-tier-easy: #2a6030;
 }
 
 @layer utilities {
-  .osrs-bg {
-    background-color: var(--color-osrs-bg);
-    background-image:
-      repeating-linear-gradient(0deg,  transparent, transparent 31px, var(--color-osrs-grid) 31px, var(--color-osrs-grid) 32px),
-      repeating-linear-gradient(90deg, transparent, transparent 31px, var(--color-osrs-grid) 31px, var(--color-osrs-grid) 32px);
-  }
+	.osrs-bg {
+		background-color: var(--color-osrs-bg);
+		background-image:
+			repeating-linear-gradient(
+				0deg,
+				transparent,
+				transparent 31px,
+				var(--color-osrs-grid) 31px,
+				var(--color-osrs-grid) 32px
+			),
+			repeating-linear-gradient(
+				90deg,
+				transparent,
+				transparent 31px,
+				var(--color-osrs-grid) 31px,
+				var(--color-osrs-grid) 32px
+			);
+	}
 
-  .card-accent-border {
-    border-left: 3px solid var(--color-osrs-accent);
-  }
+	.card-accent-border {
+		border-left: 3px solid var(--color-osrs-accent);
+	}
 
-  .pixelated {
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-  }
+	.pixelated {
+		image-rendering: pixelated;
+		image-rendering: crisp-edges;
+	}
 
-  .chip-icon-pad {
-    @apply px-[7px] py-[6px] lg:px-[9px] lg:py-[8px];
-  }
+	.chip-icon-pad {
+		@apply px-[7px] py-[6px] lg:px-[9px] lg:py-[8px];
+	}
 
-  .chip-content-pad {
-    @apply px-[10px] py-[4px] lg:px-3 lg:py-[6px];
-  }
+	.chip-content-pad {
+		@apply px-[10px] py-[4px] lg:px-3 lg:py-[6px];
+	}
 
-  .osrs-summary-badge {
-    @apply font-game text-[17px] lg:text-[21px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default;
-  }
+	.osrs-summary-badge {
+		@apply font-game text-[17px] lg:text-[21px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default;
+	}
 }

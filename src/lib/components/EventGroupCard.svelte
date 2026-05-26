@@ -13,7 +13,9 @@
 
 <div class="mb-5 border border-osrs-card-border card-accent-border bg-osrs-card">
 	<!-- Header -->
-	<div class="flex items-center justify-between px-4 py-[10px] lg:px-5 lg:py-[13px] bg-osrs-card-head border-b border-osrs-card-border">
+	<div
+		class="flex items-center justify-between px-4 py-[10px] lg:px-5 lg:py-[13px] bg-osrs-card-head border-b border-osrs-card-border"
+	>
 		<span class="font-pixel text-[8px] lg:text-[10px] text-osrs-gold">{day.dateLabel}</span>
 		<div class="flex gap-3 flex-wrap justify-end">
 			{#if day.skills.length > 0}
@@ -53,7 +55,9 @@
 	<div class="px-4 py-3 flex flex-col gap-[14px]">
 		{#if day.skills.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div
+					class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div"
+				>
 					Level Ups
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
@@ -66,12 +70,18 @@
 
 		{#if day.bosses.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div
+					class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div"
+				>
 					Boss Kills
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
 					{#each day.bosses as entry (entry.bossName)}
-						<BossChip bossName={entry.bossName} killsToday={entry.killsToday} totalKc={entry.totalKc} />
+						<BossChip
+							bossName={entry.bossName}
+							killsToday={entry.killsToday}
+							totalKc={entry.totalKc}
+						/>
 					{/each}
 				</div>
 			</div>
@@ -79,7 +89,9 @@
 
 		{#if day.items.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div
+					class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div"
+				>
 					Collection Log
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
@@ -92,7 +104,9 @@
 
 		{#if day.diaries.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div
+					class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div"
+				>
 					Achievement Diaries
 				</div>
 				<div class="flex flex-wrap gap-[6px]">
@@ -105,7 +119,9 @@
 
 		{#if day.quests.length > 0}
 			<div>
-				<div class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div">
+				<div
+					class="font-pixel text-[6px] lg:text-[8px] text-osrs-gold-dim tracking-[2px] uppercase mb-2 pb-[5px] border-b border-osrs-section-div"
+				>
 					Quests
 				</div>
 				<div class="flex flex-wrap gap-[6px]">

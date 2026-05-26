@@ -12,6 +12,6 @@ export const GET: RequestHandler = async ({ request }) => {
 	}
 
 	return new Response(await registry.metrics(), {
-		headers: { 'Content-Type': registry.contentType },
+		headers: { 'Content-Type': registry.contentType }
 	});
 };

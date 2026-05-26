@@ -3,7 +3,7 @@ export const EVENT_TYPE = {
 	BOSS_KILL: 'BOSS_KILL',
 	COLLECTION_LOG: 'COLLECTION_LOG',
 	ACHIEVEMENT_DIARY: 'ACHIEVEMENT_DIARY',
-	QUEST_COMPLETED: 'QUEST_COMPLETED',
+	QUEST_COMPLETED: 'QUEST_COMPLETED'
 } as const;
 
 export interface SkillEntry {
@@ -56,7 +56,13 @@ interface EventBucket {
 }
 
 function emptyBucket(): EventBucket {
-	return { skills: new Map(), bosses: new Map(), items: new Set(), diaries: new Map(), quests: new Set() };
+	return {
+		skills: new Map(),
+		bosses: new Map(),
+		items: new Set(),
+		diaries: new Map(),
+		quests: new Set()
+	};
 }
 
 function normalizeTimestamp(ts: string): string {

@@ -15,15 +15,24 @@
 
 <svelte:head>
 	<title>MaxCape | OSRS Milestone Tracker</title>
-	<meta name="description" content="Track your Old School RuneScape skill gains, boss kills, and collection log milestones with MaxCape." />
+	<meta
+		name="description"
+		content="Track your Old School RuneScape skill gains, boss kills, and collection log milestones with MaxCape."
+	/>
 </svelte:head>
 
-<main class="osrs-bg flex-1 flex flex-col items-center justify-center px-4 font-game text-osrs-body">
+<main
+	class="osrs-bg flex-1 flex flex-col items-center justify-center px-4 font-game text-osrs-body"
+>
 	<div class="w-full max-w-sm lg:max-w-lg text-center">
-		<h1 class="font-pixel text-[22px] lg:text-[28px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px] mb-2">
+		<h1
+			class="font-pixel text-[22px] lg:text-[28px] text-osrs-gold [text-shadow:0_0_24px_#c8a04b55,0_2px_0_#000] tracking-[2px] mb-2"
+		>
 			MaxCape
 		</h1>
-		<p class="font-game text-[22px] lg:text-[28px] text-osrs-gold-dim tracking-[3px] mb-8">OSRS milestone tracker</p>
+		<p class="font-game text-[22px] lg:text-[28px] text-osrs-gold-dim tracking-[3px] mb-8">
+			OSRS milestone tracker
+		</p>
 
 		<form onsubmit={search} class="flex">
 			<input

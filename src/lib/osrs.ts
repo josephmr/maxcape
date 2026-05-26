@@ -3,8 +3,9 @@ import itemImageOverrides from './config/item-image-overrides.json';
 function wikiEncode(filename: string): string {
 	return filename
 		.replace(/ /g, '_')
-		.replace(/[^A-Za-z0-9\-_.]/g, char =>
-			`%${char.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0')}`
+		.replace(
+			/[^A-Za-z0-9\-_.]/g,
+			(char) => `%${char.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0')}`
 		);
 }
 
@@ -25,15 +26,14 @@ export const diaryIconUrl = 'https://oldschool.runescape.wiki/images/Achievement
 export const questPointIconUrl = 'https://oldschool.runescape.wiki/images/Quest_point_icon.png';
 export const unknownIconUrl = 'https://oldschool.runescape.wiki/images/Sapphire.png';
 
-const bossIconModules = import.meta.glob<{ default: string }>(
-	'./assets/boss-icons/*.png',
-	{ eager: true }
-);
+const bossIconModules = import.meta.glob<{ default: string }>('./assets/boss-icons/*.png', {
+	eager: true
+});
 
 const bossIconMap: Record<string, string> = Object.fromEntries(
 	Object.entries(bossIconModules).map(([path, mod]) => [
 		path.split('/').pop()!.replace('.png', ''),
-		mod.default,
+		mod.default
 	])
 );
 

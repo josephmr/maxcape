@@ -42,7 +42,7 @@ function normalizeBossKillEvents(
 	const t1 = new Date(periodEnd).getTime();
 	const result = [];
 	for (let i = 0; i < kills; i++) {
-		const t = t0 + Math.round((t1 - t0) * i / (kills - 1));
+		const t = t0 + Math.round(((t1 - t0) * i) / (kills - 1));
 		const killTotalKc = totalKc != null ? totalKc - (kills - 1 - i) : null;
 		result.push({
 			...base,
@@ -94,16 +94,16 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 			{ accountHash: hashStr, playerName: nameStr, timestamp: String(timestamp) },
 			stripColorTags(data) as Record<string, unknown>
 		);
-		await db.insert(events).values(normalized.map(row => ({ ...row, eventType: typeStr })));
+		await db.insert(events).values(normalized.map((row) => ({ ...row, eventType: typeStr })));
 		eventsIngestedTotal.inc({ event_type: typeStr }, normalized.length);
 		totalEventsGauge.inc(normalized.length);
 	} else {
 		await db.insert(events).values({
 			accountHash: hashStr,
-			playerName:  nameStr,
-			eventType:   typeStr,
-			timestamp:   String(timestamp),
-			data:        JSON.stringify(stripColorTags(data))
+			playerName: nameStr,
+			eventType: typeStr,
+			timestamp: String(timestamp),
+			data: JSON.stringify(stripColorTags(data))
 		});
 		eventsIngestedTotal.inc({ event_type: typeStr });
 		totalEventsGauge.inc();

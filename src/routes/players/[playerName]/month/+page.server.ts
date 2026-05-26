@@ -20,7 +20,11 @@ export const load: PageServerLoad = async ({ params, url }) => {
 	return {
 		playerName: params.playerName,
 		months: groupEventsByMonth(
-			rows.map((row) => ({ eventType: row.eventType, timestamp: row.timestamp, data: JSON.parse(row.data) as Record<string, unknown> })),
+			rows.map((row) => ({
+				eventType: row.eventType,
+				timestamp: row.timestamp,
+				data: JSON.parse(row.data) as Record<string, unknown>
+			})),
 			timeZone
 		)
 	};

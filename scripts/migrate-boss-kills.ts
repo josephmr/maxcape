@@ -21,17 +21,24 @@ interface BossKillData {
 	periodEnd?: string;
 }
 
-function interpolateTimestamp(periodStart: string, periodEnd: string, i: number, n: number): string {
+function interpolateTimestamp(
+	periodStart: string,
+	periodEnd: string,
+	i: number,
+	n: number
+): string {
 	const t0 = new Date(periodStart).getTime();
 	const t1 = new Date(periodEnd).getTime();
-	const t = n === 1 ? t1 : t0 + Math.round((t1 - t0) * i / (n - 1));
+	const t = n === 1 ? t1 : t0 + Math.round(((t1 - t0) * i) / (n - 1));
 	return new Date(t).toISOString();
 }
 
-const rows = db.prepare(
-	`SELECT id, account_hash, player_name, timestamp, data, created_at
+const rows = db
+	.prepare(
+		`SELECT id, account_hash, player_name, timestamp, data, created_at
 	 FROM events WHERE event_type = 'BOSS_KILL'`
-).all() as RawEvent[];
+	)
+	.all() as RawEvent[];
 
 console.log(`Found ${rows.length} BOSS_KILL event(s) to migrate.`);
 
@@ -40,12 +47,8 @@ let expanded = 0;
 let newRows = 0;
 
 const migrate = db.transaction(() => {
-	const updateStmt = db.prepare(
-		`UPDATE events SET data = ? WHERE id = ?`
-	);
-	const deleteStmt = db.prepare(
-		`DELETE FROM events WHERE id = ?`
-	);
+	const updateStmt = db.prepare(`UPDATE events SET data = ? WHERE id = ?`);
+	const deleteStmt = db.prepare(`DELETE FROM events WHERE id = ?`);
 	const insertStmt = db.prepare(
 		`INSERT INTO events (account_hash, player_name, event_type, timestamp, data, created_at)
 		 VALUES (?, ?, 'BOSS_KILL', ?, ?, ?)`
@@ -75,7 +78,13 @@ const migrate = db.transaction(() => {
 			for (let i = 0; i < n; i++) {
 				const ts = interpolateTimestamp(start, end, i, n);
 				const killTotalKc = totalKc != null ? totalKc - (n - 1 - i) : null;
-				insertStmt.run(row.account_hash, row.player_name, ts, JSON.stringify({ bossName, totalKc: killTotalKc }), row.created_at);
+				insertStmt.run(
+					row.account_hash,
+					row.player_name,
+					ts,
+					JSON.stringify({ bossName, totalKc: killTotalKc }),
+					row.created_at
+				);
 				newRows++;
 			}
 			expanded++;
