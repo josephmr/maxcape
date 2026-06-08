@@ -1,4 +1,5 @@
 import itemImageOverrides from './config/item-image-overrides.json';
+import bossIconOverrides from './config/boss-icon-overrides.json';
 
 function wikiEncode(filename: string): string {
 	return filename
@@ -39,6 +40,10 @@ const bossIconMap: Record<string, string> = Object.fromEntries(
 
 // Transform: lowercase, strip apostrophes, collapse colons/hyphens/spaces to underscores.
 export function bossImageUrl(bossName: string): string {
+	const override = (bossIconOverrides as Record<string, string>)[bossName];
+	if (override) {
+		return bossIconMap[override] ?? `/boss-icons/${override}.png`;
+	}
 	const filename = bossName
 		.toLowerCase()
 		.replace(/'/g, '')
