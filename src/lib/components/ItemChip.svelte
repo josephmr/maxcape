@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { itemIconUrl } from '$lib/osrs';
+	import ItemIcon from './ItemIcon.svelte';
 
 	let { itemName }: { itemName: string } = $props();
 </script>
@@ -8,7 +9,8 @@
 	<div
 		class="bg-osrs-chip-icon chip-icon-pad flex items-center shrink-0 border-r border-osrs-chip-border"
 	>
-		<img
+		<ItemIcon
+			{itemName}
 			src={itemIconUrl(itemName)}
 			alt={itemName}
 			class="pixelated w-7 h-7 lg:w-9 lg:h-9 object-contain"

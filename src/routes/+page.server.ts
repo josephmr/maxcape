@@ -35,6 +35,7 @@ export const load: PageServerLoad = () => {
 	const recentPlayers = rows.map((row) => {
 		const data = JSON.parse(row.data) as Record<string, unknown>;
 		let iconUrl: string;
+		let itemName: string | null = null;
 
 		switch (row.event_type) {
 			case EVENT_TYPE.SKILL_LEVEL_UP:
@@ -44,7 +45,8 @@ export const load: PageServerLoad = () => {
 				iconUrl = bossImageUrl(String(data.bossName ?? ''));
 				break;
 			case EVENT_TYPE.COLLECTION_LOG:
-				iconUrl = itemIconUrl(String(data.itemName ?? ''));
+				itemName = String(data.itemName ?? '');
+				iconUrl = itemIconUrl(itemName);
 				break;
 			case EVENT_TYPE.QUEST_COMPLETED:
 				iconUrl = questPointIconUrl;
@@ -56,7 +58,7 @@ export const load: PageServerLoad = () => {
 				iconUrl = unknownIconUrl;
 		}
 
-		return { playerName: row.player_name, iconUrl };
+		return { playerName: row.player_name, iconUrl, itemName };
 	});
 
 	return { recentPlayers };
