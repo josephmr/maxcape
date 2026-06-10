@@ -1,3 +1,7 @@
 {
-	"Barrows": "barrows_chests"
+	"Barrows": "barrows_chests",
+	"Tombs of Amascut: Entry Mode": "tombs_of_amascut",
+	"Tombs of Amascut: Expert Mode": "tombs_of_amascut_expert",
+	"Theatre of Blood: Entry Mode": "theatre_of_blood",
+	"Theatre of Blood: Hard Mode": "theatre_of_blood_hard_mode"
 }
