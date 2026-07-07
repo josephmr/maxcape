@@ -88,7 +88,7 @@
 
 		{#if groups.length === 0}
 			<p class="font-game text-[20px] lg:text-[25px] text-osrs-gold-dim text-center mt-12">
-				No events recorded yet. Make sure the plugin is enabled and send events is toggled on.
+				No events recorded yet. Make sure the plugin is enabled. 
 			</p>
 		{:else}
 			{#each groups as group (group.dateKey)}
