@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { bossImageUrl } from '$lib/osrs';
+	import { bossDisplayName, bossImageUrl } from '$lib/osrs';
 
 	let {
 		bossName,
@@ -18,13 +18,13 @@
 	>
 		<img
 			src={bossImageUrl(bossName)}
-			alt={bossName}
+			alt={bossDisplayName(bossName)}
 			class="pixelated w-9 h-9 lg:w-11 lg:h-11 object-contain"
 		/>
 	</div>
 	<div class="bg-osrs-chip-bg chip-content-pad flex flex-col justify-center">
 		<span class="font-game text-[17px] lg:text-[21px] text-osrs-chip-skill leading-none"
-			>{bossName}</span
+			>{bossDisplayName(bossName)}</span
 		>
 		<span class="font-pixel text-[10px] lg:text-[13px] text-osrs-gold-bright leading-[1.4]">
 			+{killsToday}{#if totalKc != null}<span

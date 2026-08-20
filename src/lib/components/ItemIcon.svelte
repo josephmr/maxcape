@@ -4,6 +4,7 @@
 
 <script lang="ts">
 	import fallbackUrl from '$lib/assets/item-icons/cake_of_guidance.png';
+	import { itemIconUrlCandidates } from '$lib/osrs';
 
 	let {
 		itemName,
@@ -45,9 +46,25 @@
 		if (image.dataset.fallbackApplied === 'true') return;
 
 		const failedUrl = image.currentSrc || image.src;
+		const candidates = itemIconUrlCandidates(itemName);
+		const candidateIndex = Number(image.dataset.candidateIndex ?? 0);
+		if (candidateIndex + 1 < candidates.length) {
+			image.dataset.candidateIndex = String(candidateIndex + 1);
+			image.dataset.originalFailedUrl ||= failedUrl;
+			image.src = candidates[candidateIndex + 1];
+			return;
+		}
+
+		if (image.dataset.canonicalRetryApplied !== 'true') {
+			image.dataset.canonicalRetryApplied = 'true';
+			image.dataset.originalFailedUrl ||= failedUrl;
+			image.src = `/api/item-icons/resolve?name=${encodeURIComponent(itemName)}`;
+			return;
+		}
+
 		image.dataset.fallbackApplied = 'true';
 		image.src = fallbackUrl;
-		reportFailure(failedUrl);
+		reportFailure(image.dataset.originalFailedUrl || failedUrl);
 	}
 </script>
 
