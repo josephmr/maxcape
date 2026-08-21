@@ -123,3 +123,17 @@ body {
 		@apply font-game text-[17px] lg:text-[21px] text-osrs-summary-text px-[9px] py-[1px] border border-osrs-summary-border select-none cursor-default;
 	}
 }
+
+@layer components {
+	.osrs-form-control {
+		@apply w-full border border-osrs-card-border bg-osrs-chip-bg px-3 py-2 font-game text-[20px] text-osrs-body outline-none focus:border-osrs-accent;
+	}
+
+	.osrs-primary-button {
+		@apply cursor-pointer border border-osrs-accent bg-osrs-accent px-4 py-2 font-pixel text-[8px] text-osrs-accent-text disabled:cursor-wait disabled:opacity-60;
+	}
+
+	.osrs-secondary-button {
+		@apply cursor-pointer border border-osrs-card-border bg-osrs-chip-bg px-4 py-2 font-pixel text-[8px] text-osrs-gold-dim hover:text-osrs-gold;
+	}
+}

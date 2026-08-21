@@ -13,4 +13,9 @@
 	/>
 </svelte:head>
 
-<PlayerHistoryLayout playerName={data.playerName} activeTab="day" groups={data.days} />
+<PlayerHistoryLayout
+	playerName={data.playerName}
+	activeTab="day"
+	groups={data.days}
+	canAddEvents={data.manualEventEntryEnabled && data.isManualEventAdmin}
+/>

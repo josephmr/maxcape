@@ -27,6 +27,15 @@ npm install
 npm run dev
 ```
 
+To enable the protected manual-event modal, configure both secrets before starting the server:
+
+```sh
+MANUAL_EVENT_ADMIN_PASSWORD='choose-a-strong-password'
+MANUAL_EVENT_SESSION_SECRET='choose-a-long-random-signing-secret'
+```
+
+Admin sessions expire after eight hours. Manual entry remains disabled when either value is missing.
+
 ## Building
 
 ```sh

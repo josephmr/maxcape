@@ -15,7 +15,7 @@
 
 <button
 	onclick={toggleTheme}
-	class="fixed top-4 right-14 text-osrs-gold-dim hover:text-osrs-gold transition-colors duration-[120ms] z-50 cursor-pointer"
+	class="text-osrs-gold-dim hover:text-osrs-gold transition-colors duration-[120ms] cursor-pointer"
 	aria-label="Toggle theme"
 >
 	{#if theme === 'dark'}

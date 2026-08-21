@@ -95,7 +95,12 @@ function fillBucket(bucket: EventBucket, event: RawEvent): void {
 			} else {
 				bucket.bosses.set(bossName, {
 					killsToday: existing.killsToday + 1,
-					totalKc: totalKc ?? existing.totalKc
+					totalKc:
+						totalKc == null
+							? existing.totalKc
+							: existing.totalKc == null
+								? totalKc
+								: Math.max(existing.totalKc, totalKc)
 				});
 			}
 		}

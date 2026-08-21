@@ -3,16 +3,20 @@
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import EventGroupCard from './EventGroupCard.svelte';
+	import ManualEventModal from './ManualEventModal.svelte';
 
 	let {
 		playerName,
 		activeTab,
-		groups
+		groups,
+		canAddEvents = false
 	}: {
 		playerName: string;
 		activeTab: 'day' | 'month';
 		groups: EventGroup[];
+		canAddEvents?: boolean;
 	} = $props();
+	let manualEventModal = $state<{ open: () => void }>();
 
 	let currentTz = $derived(page.url.searchParams.get('tz') ?? '');
 	let isLocal = $derived(!!currentTz);
@@ -46,7 +50,7 @@
 			></span>
 		</header>
 
-		<div class="flex justify-between items-center mb-6">
+		<div class="flex flex-wrap justify-between items-center gap-3 mb-6">
 			<div class="flex font-pixel text-[7px] lg:text-[9px] border border-osrs-card-border w-fit">
 				<a
 					href="/players/{playerName}{tzQuery}"
@@ -84,11 +88,17 @@
 					Local
 				</button>
 			</div>
+
+			{#if canAddEvents}
+				<button type="button" onclick={() => manualEventModal?.open()} class="osrs-primary-button">
+					Add event
+				</button>
+			{/if}
 		</div>
 
 		{#if groups.length === 0}
 			<p class="font-game text-[20px] lg:text-[25px] text-osrs-gold-dim text-center mt-12">
-				No events recorded yet. Make sure the plugin is enabled. 
+				No events recorded yet. Make sure the plugin is enabled.
 			</p>
 		{:else}
 			{#each groups as group (group.dateKey)}
@@ -97,3 +107,7 @@
 		{/if}
 	</div>
 </main>
+
+{#if canAddEvents}
+	<ManualEventModal bind:this={manualEventModal} {playerName} />
+{/if}
