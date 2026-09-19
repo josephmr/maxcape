@@ -93,11 +93,13 @@ export async function updateQuests(destination: URL = output, fetcher: typeof fe
 	if (missing.length) {
 		throw new Error(`Wiki omitted existing choices; review before updating: ${missing.join(', ')}`);
 	}
-	// Preserve established ordering and names, including historical completion identifiers.
-	const added = names.filter((name) => !previous.includes(name)).sort();
-	if (added.length) {
+	// Sort the entire list on every run, even when no new quests were released.
+	// The validated wiki names are unique, so this also repairs existing duplicates.
+	names.sort((a, b) => a.localeCompare(b, 'en'));
+	const added = names.filter((name) => !previous.includes(name));
+	if (JSON.stringify(previous) !== JSON.stringify(names)) {
 		const temporary = new URL(`${destination.href}.tmp`);
-		await writeFile(temporary, JSON.stringify([...previous, ...added], null, '\t') + '\n');
+		await writeFile(temporary, JSON.stringify(names, null, '\t') + '\n');
 		await rename(temporary, destination);
 	}
 	return added;

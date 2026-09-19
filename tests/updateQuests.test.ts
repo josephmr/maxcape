@@ -53,7 +53,7 @@ test('updates atomically, is idempotent, and leaves choices intact on failures',
 		const fetcher = reply({ parse: { text: wikiHtml() } });
 		assert.equal((await updateQuests(destination, fetcher)).length, 203);
 		const saved = await readFile(destination, 'utf8');
-		assert.equal(JSON.parse(saved)[0], "Cook's Assistant");
+		assert.deepEqual(JSON.parse(saved).slice(0, 2), ['A Ruff Situation', "Cook's Assistant"]);
 		assert.deepEqual(await updateQuests(destination, fetcher), []);
 		assert.equal(await readFile(destination, 'utf8'), saved);
 		for (const [fetcher, message] of [
@@ -71,6 +71,25 @@ test('updates atomically, is idempotent, and leaves choices intact on failures',
 		] as const) {
 			await assert.rejects(updateQuests(destination, fetcher), message);
 			assert.equal(await readFile(destination, 'utf8'), saved);
+		}
+	} finally {
+		await rm(directory, { recursive: true, force: true });
+	}
+});
+
+test('sorts existing choices and removes duplicates even without new quests', async () => {
+	const directory = await mkdtemp(join(tmpdir(), 'maxcape-quests-'));
+	const destination = pathToFileURL(join(directory, 'quests.json'));
+	try {
+		const names = parseQuestNames(wikiHtml()).reverse();
+		await writeFile(destination, JSON.stringify([...names, "Cook's Assistant"]));
+		assert.deepEqual(await updateQuests(destination, reply({ parse: { text: wikiHtml() } })), []);
+		const saved: string[] = JSON.parse(await readFile(destination, 'utf8'));
+		assert.equal(saved.length, names.length);
+		assert.equal(new Set(saved).size, saved.length);
+		assert.deepEqual(saved.slice(0, 2), ['A Ruff Situation', "Cook's Assistant"]);
+		for (let i = 1; i < saved.length; i++) {
+			assert.ok(saved[i - 1].localeCompare(saved[i], 'en') < 0);
 		}
 	} finally {
 		await rm(directory, { recursive: true, force: true });

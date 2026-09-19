@@ -41,7 +41,8 @@ Admin sessions expire after eight hours. Manual entry remains disabled when eith
 Run `npm run update:quests` to refresh manual-event choices from the
 [OSRS Wiki quest list](https://oldschool.runescape.wiki/w/Quests/List), including
 miniquests and Recipe for Disaster stages. The script preserves existing completion
-names and ordering, appends new choices, and fails without changing the list if the
+names, sorts the entire list alphabetically (including leading A/The), removes existing
+duplicates, and fails without changing the list if the
 wiki response is incomplete or omits existing choices. Wiki renames require manual
 review of the name mapping in `scripts/update-quests.ts`.
 
